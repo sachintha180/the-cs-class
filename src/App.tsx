@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <Router basename="/sachintha180.github.io">
+    <Router>
       <div className="min-h-screen bg-gray-900 font-body">
         <Routes>
           <Route path="/" element={<LandingPage />} />
