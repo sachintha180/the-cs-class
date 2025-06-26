@@ -2,7 +2,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import type { ClassLevel } from "../types";
 import LessonCard from "../components/LessonCard";
-import { lessonsData } from "../data/lessons";
+import { codeData, lessonsData } from "../data/lessons";
+import CodeCard from "../components/CodeCard";
 
 function Dashboard() {
   const [selectedClass, setSelectedClass] = useState<ClassLevel>("CIE A2");
@@ -103,6 +104,24 @@ function Dashboard() {
             {lessonsData[selectedClass].map((lesson) => (
               <LessonCard key={lesson.id} lesson={lesson} />
             ))}
+          </div>
+
+          {/* Code Container */}
+          <div className="mt-8 flex flex-col justify-center  bg-gray-800 border border-purple-500/20 rounded-lg p-6 hover:border-purple-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+            {/* Lesson Header */}
+            <div className="mb-4">
+              <h3 className="text-xl font-bold text-white mb-2">Python Code</h3>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Download the Python Programs from exercises and questions
+                discussed during class.
+              </p>
+            </div>
+
+            <div className="mt-auto pt-4 border-t border-gray-700 flex flex-row flex-wrap gap-3">
+              {codeData[selectedClass].map((code) => (
+                <CodeCard key={code.id} code={code} />
+              ))}
+            </div>
           </div>
         </div>
       </div>

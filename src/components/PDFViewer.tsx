@@ -1,5 +1,6 @@
 interface PDFViewerProps {
   url: string;
+  id: string;
   title: string;
   isCompleted?: boolean;
   onClose: () => void;
@@ -7,6 +8,7 @@ interface PDFViewerProps {
 
 function PDFViewer({
   url,
+  id,
   title,
   isCompleted = false,
   onClose,
@@ -29,7 +31,9 @@ function PDFViewer({
         {/* Header */}
         <div className="flex items-center justify-between p-4 border-b border-gray-700">
           <div className="flex items-center space-x-3">
-            <h2 className="text-xl font-bold text-white">{title} - Note</h2>
+            <h2 className="text-xl font-bold text-white">
+              {id}. {title} - Note
+            </h2>
             <span
               className={`px-2 py-1 rounded-full text-xs font-medium ${
                 isCompleted

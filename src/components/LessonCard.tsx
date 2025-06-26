@@ -1,13 +1,15 @@
 import { useState } from "react";
-import type { LessonCardProps } from "../types";
 import PDFViewer from "./PDFViewer";
-import RecordingPlayer from "./VideoPlayer";
+import type { Lesson } from "../types";
+
+type LessonCardProps = {
+  lesson: Lesson;
+};
 
 function LessonCard({ lesson }: LessonCardProps) {
   const [showPDF, setShowPDF] = useState(false);
-  const [showRecording, setShowRecording] = useState(false);
 
-  const handleButtonClick = (action: string) => {
+  const handleButtonClick = (action: string, videoUrl?: string) => {
     switch (action) {
       case "Note":
         if (lesson.hasNote) {
@@ -16,9 +18,10 @@ function LessonCard({ lesson }: LessonCardProps) {
           alert("No note available for this lesson.");
         }
         break;
-      case "Recording":
-        if (lesson.hasVideo) {
-          setShowRecording(true);
+      case "Recordings":
+        if (videoUrl) {
+          // Open Google Video URL in new tab
+          window.open(videoUrl, "_blank");
         } else {
           alert("No recording available for this lesson.");
         }
@@ -26,7 +29,7 @@ function LessonCard({ lesson }: LessonCardProps) {
       case "Quiz":
         if (lesson.hasQuiz) {
           // Open Google Form in new tab
-          window.open(lesson.hasQuiz, '_blank');
+          window.open(lesson.hasQuiz, "_blank");
         } else {
           alert("No quiz available for this lesson.");
         }
@@ -47,24 +50,26 @@ function LessonCard({ lesson }: LessonCardProps) {
 
   return (
     <>
-      <div className="bg-gray-800 border border-purple-500/20 rounded-lg p-6 hover:border-purple-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
+      <div className="flex flex-col bg-gray-800 border border-purple-500/20 rounded-lg p-6 hover:border-purple-500/40 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/10">
         {/* Lesson Header */}
         <div className="mb-4">
-          <h3 className="text-xl font-bold text-white mb-2">{lesson.id} - {lesson.title}</h3>
+          <h3 className="text-xl font-bold text-white mb-2">
+            {lesson.id} - {lesson.title}
+          </h3>
           <p className="text-gray-400 text-sm leading-relaxed">
             {lesson.description}
           </p>
         </div>
 
         {/* Action Buttons */}
-        <div className="grid grid-cols-2 gap-3">
+        <div className="grid grid-cols-2 gap-3 mb-4">
           {/* Note Button */}
           <button
             onClick={() => handleButtonClick("Note")}
             disabled={!lesson.hasNote}
-            className={`flex items-center justify-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 cursor-pointer relative ${
+            className={`flex items-center justify-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 relative ${
               lesson.hasNote
-                ? "bg-purple-600 hover:bg-purple-700 text-white"
+                ? "bg-purple-600 hover:bg-purple-700 text-white cursor-pointer"
                 : "bg-gray-700 text-gray-500 cursor-not-allowed"
             }`}
           >
@@ -84,45 +89,24 @@ function LessonCard({ lesson }: LessonCardProps) {
             Note
             {/* Completion Status Indicator */}
             {lesson.hasNote && (
-              <div className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-white ${
-                lesson.hasNote.isCompleted ? 'bg-green-500' : 'bg-yellow-500'
-              }`} title={lesson.hasNote.isCompleted ? 'Completed Note' : 'Blank Note'} />
-            )}
-          </button>
-
-          {/* Recording Button */}
-          <button
-            onClick={() => handleButtonClick("Recording")}
-            disabled={!lesson.hasVideo}
-            className={`flex items-center justify-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 cursor-pointer ${
-              lesson.hasVideo
-                ? "bg-purple-600 hover:bg-purple-700 text-white"
-                : "bg-gray-700 text-gray-500 cursor-not-allowed"
-            }`}
-          >
-            <svg
-              className="w-4 h-4 mr-2"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+              <div
+                className={`absolute -top-1 -right-1 w-3 h-3 rounded-full border-2 border-white ${
+                  lesson.hasNote.isCompleted ? "bg-green-500" : "bg-yellow-500"
+                }`}
+                title={
+                  lesson.hasNote.isCompleted ? "Completed Note" : "Blank Note"
+                }
               />
-            </svg>
-            Recording
+            )}
           </button>
 
           {/* Quiz Button */}
           <button
             onClick={() => handleButtonClick("Quiz")}
             disabled={!lesson.hasQuiz}
-            className={`flex items-center justify-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 cursor-pointer ${
+            className={`flex items-center justify-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
               lesson.hasQuiz
-                ? "bg-purple-600 hover:bg-purple-700 text-white"
+                ? "bg-purple-600 hover:bg-purple-700 text-white cursor-pointer"
                 : "bg-gray-700 text-gray-500 cursor-not-allowed"
             }`}
           >
@@ -146,9 +130,9 @@ function LessonCard({ lesson }: LessonCardProps) {
           <button
             onClick={() => handleButtonClick("Summary Checker")}
             disabled={!lesson.hasSummaryChecker}
-            className={`flex items-center justify-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 cursor-pointer ${
+            className={`col-span-2 flex items-center justify-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 ${
               lesson.hasSummaryChecker
-                ? "bg-purple-600 hover:bg-purple-700 text-white"
+                ? "bg-purple-600 hover:bg-purple-700 text-white cursor-pointer"
                 : "bg-gray-700 text-gray-500 cursor-not-allowed"
             }`}
           >
@@ -167,21 +151,51 @@ function LessonCard({ lesson }: LessonCardProps) {
             </svg>
             AI Check
           </button>
+
+          {/* Recording Buttons */}
+          {lesson.hasVideos &&
+            lesson.hasVideos.map((videoUrl, index) => (
+              <button
+                onClick={() => handleButtonClick("Recordings", videoUrl)}
+                className="col-span-2 flex items-center justify-center px-4 py-2 rounded-lg font-medium text-sm transition-all duration-200 bg-purple-600 hover:bg-purple-700 text-white cursor-pointer"
+              >
+                <svg
+                  className="w-4 h-4 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"
+                  />
+                </svg>
+                Recording - Part {index + 1}
+              </button>
+            ))}
         </div>
 
         {/* Availability Indicator */}
-        <div className="mt-4 pt-4 border-t border-gray-700">
+        <div className="mt-auto pt-4 border-t border-gray-700">
           <div className="flex flex-wrap gap-2">
             {lesson.hasNote && (
-              <span className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
-                lesson.hasNote.isCompleted 
-                  ? 'bg-green-900 text-green-300' 
-                  : 'bg-yellow-900 text-yellow-300'
-              }`}>
-                <div className={`w-2 h-2 rounded-full mr-1 ${
-                  lesson.hasNote.isCompleted ? 'bg-green-400' : 'bg-yellow-400'
-                }`}></div>
-                {lesson.hasNote.isCompleted ? 'Completed Note' : 'In Progress'}
+              <span
+                className={`inline-flex items-center px-2 py-1 rounded-full text-xs font-medium ${
+                  lesson.hasNote.isCompleted
+                    ? "bg-green-900 text-green-300"
+                    : "bg-yellow-900 text-yellow-300"
+                }`}
+              >
+                <div
+                  className={`w-2 h-2 rounded-full mr-1 ${
+                    lesson.hasNote.isCompleted
+                      ? "bg-green-400"
+                      : "bg-yellow-400"
+                  }`}
+                ></div>
+                {lesson.hasNote.isCompleted ? "Completed Note" : "In Progress"}
               </span>
             )}
             {lesson.hasQuiz && (
@@ -196,7 +210,7 @@ function LessonCard({ lesson }: LessonCardProps) {
                 AI Check
               </span>
             )}
-            {lesson.hasVideo && (
+            {lesson.hasVideos && (
               <span className="inline-flex items-center px-2 py-1 rounded-full text-xs font-medium bg-red-900 text-red-300">
                 <div className="w-2 h-2 bg-red-400 rounded-full mr-1"></div>
                 Recording
@@ -210,18 +224,10 @@ function LessonCard({ lesson }: LessonCardProps) {
       {showPDF && lesson.hasNote && (
         <PDFViewer
           url={lesson.hasNote.url}
+          id={lesson.id}
           title={lesson.title}
           isCompleted={lesson.hasNote.isCompleted}
           onClose={() => setShowPDF(false)}
-        />
-      )}
-
-      {/* Recording Player Modal */}
-      {showRecording && lesson.hasVideo && (
-        <RecordingPlayer
-          url={lesson.hasVideo}
-          title={lesson.title}
-          onClose={() => setShowRecording(false)}
         />
       )}
     </>

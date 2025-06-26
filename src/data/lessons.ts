@@ -1,4 +1,4 @@
-import type { ClassLevel, Lesson } from "../types";
+import type { ClassLevel, Code, Lesson } from "../types";
 
 // Helper function to convert Google Drive sharing URLs to direct download URLs
 const getGoogleDriveUrl = (shareUrl: string, isRecording = false) => {
@@ -29,9 +29,12 @@ export const lessonsData: Record<ClassLevel, Lesson[]> = {
         ),
         isCompleted: false,
       },
-      hasQuiz: "https://docs.google.com/forms/d/e/1FAIpQLSdlf_Q4rPvFhGw2RJ44meVai19C9H1f2Y2gSTAjMWQFtg670A/viewform?usp=header",
+      hasQuiz:
+        "https://docs.google.com/forms/d/e/1FAIpQLSdlf_Q4rPvFhGw2RJ44meVai19C9H1f2Y2gSTAjMWQFtg670A/viewform?usp=header",
       hasSummaryChecker: false,
-      hasVideo: null,
+      hasVideos: [
+        "https://drive.google.com/file/d/1r3XnCdaYsI1Mtj0ZYS8slInxtHWK1-z6/view?usp=sharing",
+      ],
     },
     {
       id: "13.2",
@@ -45,13 +48,12 @@ export const lessonsData: Record<ClassLevel, Lesson[]> = {
       },
       hasQuiz: null,
       hasSummaryChecker: false,
-      hasVideo: null,
+      hasVideos: null,
     },
     {
       id: "13.3",
       title: "Data Representation",
-      description:
-        "Real numbers, fixed-point, floating-point, mantissa and exponent.",
+      description: "Real numbers, floating-point, mantissa and exponent.",
       hasNote: {
         url: getGoogleDriveUrl(
           "https://drive.google.com/file/d/1gFUqyjtu1s6j0I5NK-no4aI9XZ_zbm0p/view?usp=drive_link"
@@ -60,7 +62,20 @@ export const lessonsData: Record<ClassLevel, Lesson[]> = {
       },
       hasQuiz: null,
       hasSummaryChecker: false,
-      hasVideo: null,
+      hasVideos: null,
+    },
+  ],
+};
+
+export const codeData: Record<ClassLevel, Code[]> = {
+  "Edexcel IGCSE": [],
+  "CIE AS": [],
+  "CIE A2": [
+    {
+      id: "1",
+      filename: "records.py",
+      topic: "13.1 - Data Representation",
+      url: "https://drive.google.com/file/d/1SVYFHyDMNR-ZNY-SwJQE_JIxLsj-u_yG/view?usp=sharing",
     },
   ],
 };
