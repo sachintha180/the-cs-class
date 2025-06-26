@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound";
 
 function App() {
   return (
-    <Router>
+    <Router basename="/the-cs-class">
       <div className="min-h-screen bg-gray-900 font-body">
         <Routes>
           <Route path="/" element={<LandingPage />} />
