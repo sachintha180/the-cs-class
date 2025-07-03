@@ -34,6 +34,7 @@ export const lessonsData: Record<ClassLevel, Lesson[]> = {
       hasSummaryChecker: false,
       hasVideos: [
         "https://drive.google.com/file/d/1r3XnCdaYsI1Mtj0ZYS8slInxtHWK1-z6/view?usp=sharing",
+        "https://drive.google.com/file/d/1hJZKrRvnJflRl_UQ5CYKWwUd5xApoZud/view?usp=sharing",
       ],
     },
     {
@@ -76,6 +77,12 @@ export const codeData: Record<ClassLevel, Code[]> = {
       filename: "records.py",
       topic: "13.1 - Data Representation",
       url: "https://drive.google.com/file/d/1SVYFHyDMNR-ZNY-SwJQE_JIxLsj-u_yG/view?usp=sharing",
+    },
+    {
+      id: "2",
+      filename: "records_2.py",
+      topic: "13.1 - Data Representation",
+      url: "https://drive.google.com/file/d/1VowrKNweE71AqZVQdn-_YmdbfOb5wLU0/view?usp=sharing",
     },
   ],
 };
