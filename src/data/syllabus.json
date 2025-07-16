@@ -1,0 +1,65 @@
+{
+  "lessonsCompleted": ["13.1"],
+  "syllabus": [
+    {
+      "id": "13.1",
+      "title": "User-defined Data Types"
+    },
+    {
+      "id": "13.2",
+      "title": "File Organisation and Access"
+    },
+    {
+      "id": "13.3",
+      "title": "Floating-Point Numbers"
+    },
+    {
+      "id": "14.1",
+      "title": "Protocols"
+    },
+    {
+      "id": "14.2",
+      "title": "Circuit & Packet Switching"
+    },
+    {
+      "id": "15.1",
+      "title": "Processors, Parallel Processing and VMs"
+    },
+    {
+      "id": "15.2",
+      "title": "Boolean Algebra and Logic Circuits"
+    },
+    {
+      "id": "16.1",
+      "title": "Operating System"
+    },
+    {
+      "id": "16.2",
+      "title": "Translation Software"
+    },
+    {
+      "id": "17.1",
+      "title": "Encryption and Digital Certificates"
+    },
+    {
+      "id": "18.1",
+      "title": "Artificial Intelligence"
+    },
+    {
+      "id": "19.1",
+      "title": "Algorithms"
+    },
+    {
+      "id": "19.2",
+      "title": "Recursion"
+    },
+    {
+      "id": "20.1",
+      "title": "Programming Paradigms"
+    },
+    {
+      "id": "20.2",
+      "title": "File Processing and Exception Handling"
+    }
+  ]
+}

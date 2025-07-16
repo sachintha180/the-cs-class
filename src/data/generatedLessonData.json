@@ -1,0 +1,46 @@
+{
+  "generatedAt": "2025-07-16T04:18:00.887Z",
+  "totalLessons": 5,
+  "lessons": [
+    {
+      "id": 5,
+      "title": "Theory Session - Thursday",
+      "description": "Enumerated and Pointer Types",
+      "date": "2025-07-10T00:00:00.000Z",
+      "noteUrl": "https://drive.google.com/file/d/1HZyDwJr-SaqzGiaqNLsq3THA_XWa8aYw/preview",
+      "recordingUrl": "https://drive.google.com/file/d/1ymhfkL4Rtj16KUXFwhUF5bdmG3vVRGvb/preview"
+    },
+    {
+      "id": 4,
+      "title": "Practical Session - Saturday",
+      "description": "Problem Set 2",
+      "date": "2025-07-05T00:00:00.000Z",
+      "noteUrl": "https://drive.google.com/file/d/1vibh-WerLX_H67L1o7FNEqMp6NTn67Gs/preview",
+      "recordingUrl": "https://drive.google.com/file/d/19OHgTRgVvXY_hesLC6Wg1BWeyscwT85C/preview"
+    },
+    {
+      "id": 3,
+      "title": "Practical Session - Thursday",
+      "description": "Problem Set 1",
+      "date": "2025-07-03T00:00:00.000Z",
+      "noteUrl": "https://drive.google.com/file/d/1322ZDQuFWfOJiCIC6TAhUmrIpkEPUppz/preview",
+      "recordingUrl": "https://drive.google.com/file/d/1tp2lIc2j3wOZ-jlk-Z5D3QeeCW66gcI8/preview"
+    },
+    {
+      "id": 2,
+      "title": "Theory Session - Saturday",
+      "description": "Further Records and Sets",
+      "date": "2025-06-28T00:00:00.000Z",
+      "noteUrl": "https://drive.google.com/file/d/1qwWlTdCoMVXDrQ1BXJsGFnjNUE0UwPSC/preview",
+      "recordingUrl": "https://drive.google.com/file/d/1Iboqf5pf3wXi1SYcbwHuSZ_IFknJNdji/preview"
+    },
+    {
+      "id": 1,
+      "title": "Theory Session - Saturday",
+      "description": "Primitive Date Types and Records",
+      "date": "2025-06-21T00:00:00.000Z",
+      "noteUrl": "https://drive.google.com/file/d/14BsJmb2vRA63fLI-Bx116ydVkZdLzWXc/preview",
+      "recordingUrl": "https://drive.google.com/file/d/1Sw2vNvvU3u294uxttoN-tbIAPQu9aM19/preview"
+    }
+  ]
+}
