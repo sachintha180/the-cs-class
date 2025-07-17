@@ -1,4 +1,4 @@
-import { CheckCircle2Icon, CircleIcon } from "lucide-react";
+import { CheckCircle2Icon, CircleDashedIcon, CircleIcon } from "lucide-react";
 import syllabusData from "../data/syllabus.json";
 import { useState, useEffect } from "react";
 import type { Syllabus } from "../types/lesson";
@@ -8,10 +8,12 @@ export default function ProgressSection() {
   const [lessonsCompleted, setLessonsCompleted] = useState<string[]>(
     syllabusData.lessonsCompleted
   );
+  const [lessonsInProgress, setLessonsInProgress] = useState<string[]>([]);
 
   useEffect(() => {
     setSyllabus(syllabusData.syllabus);
     setLessonsCompleted(syllabusData.lessonsCompleted);
+    setLessonsInProgress(syllabusData.lessonsInProgress);
   }, []);
 
   return (
@@ -35,6 +37,8 @@ export default function ProgressSection() {
           <div key={lesson.id} className="flex items-start gap-3 text-white">
             {lessonsCompleted.includes(lesson.id) ? (
               <CheckCircle2Icon className="w-4 h-4 text-orange-500 mt-2 flex-shrink-0" />
+            ) : lessonsInProgress.includes(lesson.id) ? (
+              <CircleDashedIcon className="w-4 h-4 text-yellow-400 mt-2 flex-shrink-0" />
             ) : (
               <CircleIcon className="w-4 h-4 text-gray-400 mt-2 flex-shrink-0" />
             )}
@@ -42,6 +46,8 @@ export default function ProgressSection() {
               className={`flex flex-col min-h-[2.5rem] justify-center ${
                 lessonsCompleted.includes(lesson.id)
                   ? "text-orange-500"
+                  : lessonsInProgress.includes(lesson.id)
+                  ? "text-yellow-400"
                   : "text-gray-400"
               }`}
             >
