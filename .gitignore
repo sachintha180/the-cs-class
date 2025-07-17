@@ -28,3 +28,7 @@ secrets/*
 
 # Environment variables
 .env
+.vercel
+
+# Lesson data
+src/data/generated*.json
