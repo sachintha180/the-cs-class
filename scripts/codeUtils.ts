@@ -32,7 +32,7 @@ const parseCodeFilename = (
   }
 
   return {
-    title: filename,
+    title: title,
     type: type,
     embedUrl: `https://drive.google.com/file/d/${fileId}/preview`,
   };
