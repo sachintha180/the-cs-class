@@ -15,8 +15,16 @@ export default function CodeButton({ code }: CodeButtonProps) {
     >
       <div className="flex items-center gap-3">
         {/* Icon */}
-        <div className="p-2 bg-green-600/20 rounded-lg flex-shrink-0">
-          <CodeIcon className="w-5 h-5 text-green-400" />
+        <div
+          className={`p-2 rounded-lg flex-shrink-0 ${
+            code.type === "snippet" ? "bg-green-600/20" : "bg-amber-600/20"
+          }`}
+        >
+          <CodeIcon
+            className={`w-5 h-5 ${
+              code.type === "snippet" ? "text-green-400" : "text-amber-400"
+            }`}
+          />
         </div>
 
         {/* Text */}

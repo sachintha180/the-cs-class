@@ -19,7 +19,12 @@ function Dashboard() {
 
   useEffect(() => {
     setLessonsData(generatedLessonData.lessons);
-    setCodeData(generatedCodeData.codes);
+    setCodeData(
+      generatedCodeData.codes.map((code) => ({
+        ...code,
+        type: code.type as Code["type"],
+      }))
+    );
   }, []);
 
   return (
@@ -57,12 +62,12 @@ function Dashboard() {
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Code Resources */}
+            {/* Code Snippets */}
             <div className="mb-6">
               <div className="flex items-center justify-between mb-4">
                 <h2 className="text-2xl font-bold text-white flex items-center">
                   <CodeIcon className="w-6 h-6 mr-3 text-green-400" />
-                  Python Code
+                  Python Snippets
                 </h2>
                 <div className="flex items-center text-sm text-gray-400 gap-2">
                   <NotebookPenIcon className="w-4 h-4" />
@@ -71,9 +76,38 @@ function Dashboard() {
               </div>
             </div>
             <div className="space-y-3">
-              {codeData.map((code, index) => (
-                <CodeButton key={index} code={code} />
-              ))}
+              {codeData
+                .filter((code) => code.type === "snippet")
+                .sort((a, b) =>
+                  a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+                )
+                .map((code, index) => (
+                  <CodeButton key={index} code={code} />
+                ))}
+            </div>
+
+            {/* Code Questions */}
+            <div className="mb-6">
+              <div className="flex items-center justify-between mb-4">
+                <h2 className="text-2xl font-bold text-white flex items-center">
+                  <CodeIcon className="w-6 h-6 mr-3 text-amber-400" />
+                  Python Exercises
+                </h2>
+                <div className="flex items-center text-sm text-gray-400 gap-2">
+                  <NotebookPenIcon className="w-4 h-4" />
+                  {codeData.length} available
+                </div>
+              </div>
+            </div>
+            <div className="space-y-3">
+              {codeData
+                .filter((code) => code.type === "question")
+                .sort((a, b) =>
+                  a.title.toLowerCase().localeCompare(b.title.toLowerCase())
+                )
+                .map((code, index) => (
+                  <CodeButton key={index} code={code} />
+                ))}
             </div>
 
             {/* Progress */}
