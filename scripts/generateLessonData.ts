@@ -90,7 +90,7 @@ const generateLessonData = async () => {
     // Create code data
     const codeData = {
       generatedAt: new Date().toISOString(),
-      code: code,
+      codes: code,
     };
 
     // Write to file
