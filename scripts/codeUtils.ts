@@ -23,7 +23,7 @@ const parseCodeFilename = (
   if (type == "snippet") {
     title = filename.replace(`.${extension}`, "");
   } else {
-    title = filename.replace(`_sachintha.${extension}.py`, "");
+    title = filename.replace(`_sachintha.${extension}`, "");
   }
 
   if (title.length === 0) {
