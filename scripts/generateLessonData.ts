@@ -3,7 +3,7 @@ import { writeFileSync } from "fs";
 import { join } from "path";
 import { extractVideosFromDrive } from "./videoUtils";
 import { extractNotesFromDrive } from "./noteUtils";
-import { extractCodesFromDrive } from "./codeUtils";
+import { extractCodeFromDrive } from "./codeUtils";
 
 // Load environment variables
 config();
@@ -16,17 +16,28 @@ const generateLessonData = async () => {
     // Get the seperate folder IDs from environment variable
     const videoFolderId = process.env.GOOGLE_DRIVE_VIDEO_FOLDER_ID;
     const noteFolderId = process.env.GOOGLE_DRIVE_NOTE_FOLDER_ID;
-    const codeFolderId = process.env.GOOGLE_DRIVE_CODE_FOLDER_ID;
-    if (!videoFolderId || !noteFolderId || !codeFolderId) {
+    const codeSnippetsFolderId =
+      process.env.GOOGLE_DRIVE_CODESNIPPETS_FOLDER_ID;
+    const codeQuestionsFolderId =
+      process.env.GOOGLE_DRIVE_CODEQUESTIONS_FOLDER_ID;
+    if (
+      !videoFolderId ||
+      !noteFolderId ||
+      !codeSnippetsFolderId ||
+      !codeQuestionsFolderId
+    ) {
       throw new Error(
-        "GOOGLE_DRIVE_VIDEO_FOLDER_ID or GOOGLE_DRIVE_NOTE_FOLDER_ID or GOOGLE_DRIVE_CODE_FOLDER_ID is not set"
+        "GOOGLE_DRIVE_VIDEO_FOLDER_ID or GOOGLE_DRIVE_NOTE_FOLDER_ID or GOOGLE_DRIVE_CODESNIPPETS_FOLDER_ID or GOOGLE_DRIVE_CODEQUESTIONS_FOLDER_ID is not set"
       );
     }
 
-    // Extract codes
-    const codes = await extractCodesFromDrive(codeFolderId);
-    if (codes.length === 0) {
-      console.log("No codes found or processed");
+    // Extract code
+    const code = await extractCodeFromDrive(
+      codeSnippetsFolderId,
+      codeQuestionsFolderId
+    );
+    if (code.length === 0) {
+      console.log("No code found or processed");
       return;
     }
 
@@ -79,8 +90,7 @@ const generateLessonData = async () => {
     // Create code data
     const codeData = {
       generatedAt: new Date().toISOString(),
-      totalCodes: codes.length,
-      codes: codes,
+      code: code,
     };
 
     // Write to file
@@ -98,10 +108,10 @@ const generateLessonData = async () => {
     sortedLessons.forEach((lesson) => {
       console.log(`  ${lesson.id}. ${lesson.title} (${lesson.date})`);
     });
-    console.log(`Total codes: ${codes.length}`);
-    console.log(`Generated codes:`);
-    codes.forEach((code) => {
-      console.log(`  ${code.title}`);
+    console.log(`Total code: ${code.length}`);
+    console.log(`Generated code:`);
+    code.forEach((snippet) => {
+      console.log(`  ${snippet.title}`);
     });
   } catch (error) {
     console.error("Error generating lesson data:", error);

@@ -30,6 +30,7 @@ export type Note = {
 export type Code = {
   title: string;
   embedUrl: string;
+  type: "snippet" | "question";
 };
 
 export type Syllabus = {
