@@ -1,6 +1,12 @@
 {
-  "lessonsCompleted": ["13.1", "13.2"],
-  "lessonsInProgress": ["13.3"],
+  "lessonsCompleted": [
+    "13.1",
+    "13.2",
+    "13.3"
+  ],
+  "lessonsInProgress": [
+    "14.1"
+  ],
   "syllabus": [
     {
       "id": "13.1",
