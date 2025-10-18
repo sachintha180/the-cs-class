@@ -7,104 +7,114 @@
     "15.1",
     "P.1",
     "P.2",
-    "P.3"
+    "P.3",
+    "P.4"
   ],
   "lessonsInProgress": [
     "14.2",
     "15.2",
-    "P.3"
+    "P.5"
   ],
   "syllabus": [
     {
       "id": "13.1",
       "title": "User-defined Data Types",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "13.2",
       "title": "File Organisation and Access",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "13.3",
       "title": "Floating-Point Numbers",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "14.1",
       "title": "Protocols",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "14.2",
       "title": "Circuit & Packet Switching",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "15.1",
       "title": "Processors, Parallel Processing and VMs",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "15.2",
       "title": "Boolean Algebra and Logic Circuits",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "16.1",
       "title": "Operating System",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "16.2",
       "title": "Translation Software",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "17.1",
       "title": "Encryption and Digital Certificates",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "18.1",
       "title": "Artificial Intelligence",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "19.1",
       "title": "Algorithms",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "19.2",
       "title": "Recursion",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "20.1",
       "title": "Programming Paradigms",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "20.2",
       "title": "File Processing and Exception Handling",
-      "category": "theory"
+      "type": "Theory"
     },
     {
       "id": "P.1",
-      "title": "Variables, Constants, I/O and Datatypes"
+      "title": "Variables, Constants, I/O and Datatypes",
+      "type": "Practical"
     },
     {
       "id": "P.2",
-      "title": "Selection"
+      "title": "Selection",
+      "type": "Practical"
     },
     {
       "id": "P.3",
-      "title": "Repetition and Operators"
+      "title": "Repetition and Operators",
+      "type": "Practical"
     },
     {
       "id": "P.4",
-      "title": "Functions and String Manipulation"
+      "title": "Functions and String Manipulation",
+      "type": "Practical"
+    },
+    {
+      "id": "P.5",
+      "title": "Arrays",
+      "type": "Practical"
     }
   ]
 }

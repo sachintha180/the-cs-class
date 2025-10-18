@@ -1,29 +1,27 @@
-export type Lesson = {
-  id: number;
-  title: string;
-  description: string;
-  date: string;
-  noteUrl: string | null; // Google Drive URL
-  recordingUrl: string; // Google Drive URL
-};
+//   id: number;
+//   title: string;
+//   description: string;
+//   date: string;
+//   recordingUrl: string; // Google Drive URL
+// };
 
 export type Video = {
   index: number;
   syllabus: string;
-  date: Date;
+  date: Date | string;
   weekday: string;
-  type: "Theory" | "Practical";
+  type: string;
   embedUrl: string;
   title: string;
   description: string;
 };
 
 export type Note = {
-  index: number;
+  index: string;
+  title: string;
+  subject: string;
   syllabus: string;
-  date: Date;
-  weekday: string;
-  type: "Theory" | "Practical";
+  state: string;
   embedUrl: string;
 };
 
@@ -36,4 +34,5 @@ export type Code = {
 export type Syllabus = {
   id: string;
   title: string;
+  type: string;
 };

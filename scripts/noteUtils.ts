@@ -18,60 +18,25 @@ const parseNoteFilename = (fileId: string, filename: string): Note | null => {
   // Split by underscore
   const parts = nameWithoutExt.split("_");
 
-  // FORMAT: <index>_<syllabus>_<date;DD-MM-YYYY>_<weekday>_<theory/practical>.mp4
+  // FORMAT: <index>_<title>_<subject_<syllabus>_<Completed/Pending>.pdf
   if (parts.length !== 5) {
     console.warn(`Invalid filename format: ${filename}`);
     return null;
   }
-  const [index, syllabus, date, weekday, type] = parts;
+  const [index, title, subject, syllabus, state] = parts;
 
-  // Validate type
-  if (type !== "Theory" && type !== "Practical") {
-    console.warn(`Invalid type in filename: ${filename}, type: ${type}`);
+  // Validate state
+  if (state !== "Completed" && state !== "Pending") {
+    console.warn(`Invalid state in filename: ${filename}, state: ${state}`);
     return null;
   }
-
-  // Validate date format (DD-MM-YYYY)
-  const dateRegex = /^\d{2}-\d{2}-\d{4}$/;
-  if (!dateRegex.test(date)) {
-    console.warn(`Invalid date format in filename: ${filename}, date: ${date}`);
-    return null;
-  }
-
-  // Validate index is a number
-  const indexNumber = parseInt(index);
-  if (isNaN(indexNumber)) {
-    console.warn(`Invalid index in filename: ${filename}, index: ${index}`);
-    return null;
-  }
-
-  // Validate weekday is a valid weekday
-  const weekdays = [
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
-    "Sunday",
-  ];
-  if (!weekdays.includes(weekday)) {
-    console.warn(
-      `Invalid weekday in filename: ${filename}, weekday: ${weekday}`
-    );
-    return null;
-  }
-
-  // Convert date to YYYY-MM-DD
-  const [day, month, year] = date.split("-");
-  const formattedDate = `${year}-${month}-${day}`;
 
   return {
-    index: indexNumber,
+    index,
+    title,
+    subject,
     syllabus,
-    date: new Date(formattedDate),
-    weekday,
-    type: type as "Theory" | "Practical",
+    state: state as "Completed" | "Pending",
     embedUrl: `https://drive.google.com/file/d/${fileId}/preview`,
   };
 };

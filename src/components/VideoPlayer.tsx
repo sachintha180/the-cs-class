@@ -1,16 +1,12 @@
 import { DownloadIcon, XIcon } from "lucide-react";
 
-type RecordingPlayerProps = {
+type VideoPlayerProps = {
   url: string;
   title: string;
   onClose: () => void;
 };
 
-export default function RecordingPlayer({
-  url,
-  title,
-  onClose,
-}: RecordingPlayerProps) {
+export default function VideoPlayer({ url, title, onClose }: VideoPlayerProps) {
   // Convert preview URL to download URL
   const handleDownload = () => {
     const downloadUrl = url.replace("/preview", "");

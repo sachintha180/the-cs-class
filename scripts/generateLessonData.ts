@@ -4,6 +4,7 @@ import { join } from "path";
 import { extractVideosFromDrive } from "./videoUtils";
 import { extractNotesFromDrive } from "./noteUtils";
 import { extractCodeFromDrive } from "./codeUtils";
+import { Video } from "../src/types/lesson";
 
 // Load environment variables
 config();
@@ -48,6 +49,50 @@ const generateLessonData = async () => {
       return;
     }
 
+    // // Sort videos in ascending order (for adding cancelled lessons)
+    // const ascendingVideos = videos.sort((a, b) => {
+    //   const a_date = new Date(a.date);
+    //   const b_date = new Date(b.date);
+    //   return a_date.getTime() - b_date.getTime();
+    // });
+
+    // let adjustedVideos: Video[] = [];
+    // let offset = 0;
+
+    // for (let i = 0; i < ascendingVideos.length; i++) {
+    //   const videoIndex = ascendingVideos[i].index;
+    //   const videoDate = new Date(ascendingVideos[i].date);
+    //   const expectedIndex = i + 1 + offset;
+
+    //   if (videoIndex !== expectedIndex) {
+    //     console.log(`Seems like you cancelled class ${expectedIndex}`);
+    //     offset++;
+
+    //     const nextDate = new Date(videoDate);
+    //     nextDate.setDate(videoDate.getDate() + 1);
+
+    //     adjustedVideos.push({
+    //       index: i,
+    //       syllabus: "CS",
+    //       date: nextDate,
+    //       weekday: "",
+    //       type: "Cancelled",
+    //       embedUrl: "",
+    //       title: "Cancelled",
+    //       description: "This class was cancelled",
+    //     });
+    //   } else {
+    //     adjustedVideos.push(ascendingVideos[i]);
+    //   }
+    // }
+
+    // Sort adjusted videos in descending order
+    const descendingVideos = videos.sort((a, b) => {
+      const a_date = new Date(a.date);
+      const b_date = new Date(b.date);
+      return b_date.getTime() - a_date.getTime();
+    });
+
     // Extract notes
     const notes = await extractNotesFromDrive(noteFolderId);
     if (notes.length === 0) {
@@ -55,29 +100,13 @@ const generateLessonData = async () => {
       return;
     }
 
-    // NOTE: The video and note arrays are combined based on identical index
-    const lessons = videos.map((video) => {
-      const note = notes.find((note) => note.index === video.index);
-      return {
-        id: video.index,
-        title: video.title,
-        description: video.description,
-        date: video.date,
-        noteUrl: note ? note.embedUrl : null,
-        recordingUrl: video.embedUrl,
-      };
-    });
-
-    // Sort by descending date
-    const sortedLessons = lessons.sort((a, b) => {
-      return b.date.getTime() - a.date.getTime();
-    });
-
     // Create lesson data
     const lessonData = {
       generatedAt: new Date().toISOString(),
-      totalLessons: lessons.length,
-      lessons: sortedLessons,
+      totalVideos: videos.length,
+      videos: descendingVideos,
+      totalNotes: notes.length,
+      notes,
     };
 
     // Write to file
@@ -103,10 +132,15 @@ const generateLessonData = async () => {
     // Log the results
     console.log(`Successfully generated lesson data`);
     console.log(`Output files: ${lessonOutputPath} and ${codeOutputPath}`);
-    console.log(`Total lessons: ${sortedLessons.length}`);
-    console.log(`Generated lessons:`);
-    sortedLessons.forEach((lesson) => {
-      console.log(`  ${lesson.id}. ${lesson.title} (${lesson.date})`);
+    console.log(`Total videos: ${videos.length}`);
+    console.log(`Generated videos:`);
+    videos.forEach((video) => {
+      console.log(`  ${video.index}. ${video.title} (${video.date})`);
+    });
+    console.log(`Total notes: ${notes.length}`);
+    console.log(`Generated notes:`);
+    notes.forEach((note) => {
+      console.log(`  ${note.index}. ${note.title}`);
     });
     console.log(`Total code: ${code.length}`);
     console.log(`Generated code:`);

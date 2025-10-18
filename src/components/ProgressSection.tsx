@@ -16,6 +16,11 @@ export default function ProgressSection() {
     setLessonsInProgress(syllabusData.lessonsInProgress);
   }, []);
 
+  const theorySyllabus = syllabus.filter((value) => value.type === "Theory");
+  const practicalSyllabus = syllabus.filter(
+    (value) => value.type === "Practical"
+  );
+
   return (
     <div>
       <div className="flex justify-between text-sm mb-1">
@@ -26,36 +31,71 @@ export default function ProgressSection() {
       </div>
       <div className="w-full bg-gray-700 rounded-full h-2">
         <div
-          className="bg-orange-500 h-2 rounded-full"
+          className="bg-green-500 h-2 rounded-full"
           style={{
             width: `${(lessonsCompleted.length / syllabus.length) * 100}%`,
           }}
         ></div>
       </div>
-      <div className="grid grid-cols-2 gap-3 mt-4 mx-1">
-        {syllabus.map((lesson) => (
-          <div key={lesson.id} className="flex items-start gap-3 text-white">
-            {lessonsCompleted.includes(lesson.id) ? (
-              <CheckCircle2Icon className="w-4 h-4 text-orange-500 mt-2 flex-shrink-0" />
-            ) : lessonsInProgress.includes(lesson.id) ? (
-              <CircleDashedIcon className="w-4 h-4 text-yellow-400 mt-2 flex-shrink-0" />
-            ) : (
-              <CircleIcon className="w-4 h-4 text-gray-400 mt-2 flex-shrink-0" />
-            )}
-            <div
-              className={`flex flex-col min-h-[2.5rem] justify-center ${
-                lessonsCompleted.includes(lesson.id)
-                  ? "text-orange-500"
-                  : lessonsInProgress.includes(lesson.id)
-                  ? "text-yellow-400"
-                  : "text-gray-400"
-              }`}
-            >
-              <span className="font-mono text-sm">{lesson.id}</span>
-              <span className="text-xs leading-tight">{lesson.title}</span>
+      <div className="mt-4">
+        <p className="text-gray-500 text-sm border-b border-gray-600 mb-4">
+          Theory Lessons
+        </p>
+        <div className="grid grid-cols-2 gap-3 mx-2">
+          {theorySyllabus.map((lesson) => (
+            <div key={lesson.id} className="flex items-start gap-3 text-white">
+              {lessonsCompleted.includes(lesson.id) ? (
+                <CheckCircle2Icon className="w-4 h-4 text-green-500 mt-2 flex-shrink-0" />
+              ) : lessonsInProgress.includes(lesson.id) ? (
+                <CircleDashedIcon className="w-4 h-4 text-yellow-400 mt-2 flex-shrink-0" />
+              ) : (
+                <CircleIcon className="w-4 h-4 text-gray-400 mt-2 flex-shrink-0" />
+              )}
+              <div
+                className={`flex flex-col min-h-[2.5rem] justify-center ${
+                  lessonsCompleted.includes(lesson.id)
+                    ? "text-green-500"
+                    : lessonsInProgress.includes(lesson.id)
+                    ? "text-yellow-400"
+                    : "text-gray-400"
+                }`}
+              >
+                <span className="font-mono text-sm">{lesson.id}</span>
+                <span className="text-xs leading-tight">{lesson.title}</span>
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
+      </div>
+      <div className="mt-4 mb-2">
+        <p className="text-gray-500 text-sm border-b border-gray-600 mb-4">
+          Practical Lessons
+        </p>
+        <div className="grid grid-cols-2 gap-3 mx-2">
+          {practicalSyllabus.map((lesson) => (
+            <div key={lesson.id} className="flex items-start gap-3 text-white">
+              {lessonsCompleted.includes(lesson.id) ? (
+                <CheckCircle2Icon className="w-4 h-4 text-green-500 mt-2 flex-shrink-0" />
+              ) : lessonsInProgress.includes(lesson.id) ? (
+                <CircleDashedIcon className="w-4 h-4 text-yellow-400 mt-2 flex-shrink-0" />
+              ) : (
+                <CircleIcon className="w-4 h-4 text-gray-400 mt-2 flex-shrink-0" />
+              )}
+              <div
+                className={`flex flex-col min-h-[2.5rem] justify-center ${
+                  lessonsCompleted.includes(lesson.id)
+                    ? "text-green-500"
+                    : lessonsInProgress.includes(lesson.id)
+                    ? "text-yellow-400"
+                    : "text-gray-400"
+                }`}
+              >
+                <span className="font-mono text-sm">{lesson.id}</span>
+                <span className="text-xs leading-tight">{lesson.title}</span>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
