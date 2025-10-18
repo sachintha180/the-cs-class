@@ -32,3 +32,5 @@ secrets/*
 
 # Lesson data
 src/data/generated*.json
+
+.vercel
