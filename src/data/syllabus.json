@@ -2,71 +2,109 @@
   "lessonsCompleted": [
     "13.1",
     "13.2",
-    "13.3"
+    "13.3",
+    "14.1",
+    "15.1",
+    "P.1",
+    "P.2",
+    "P.3"
   ],
   "lessonsInProgress": [
-    "14.1"
+    "14.2",
+    "15.2",
+    "P.3"
   ],
   "syllabus": [
     {
       "id": "13.1",
-      "title": "User-defined Data Types"
+      "title": "User-defined Data Types",
+      "category": "theory"
     },
     {
       "id": "13.2",
-      "title": "File Organisation and Access"
+      "title": "File Organisation and Access",
+      "category": "theory"
     },
     {
       "id": "13.3",
-      "title": "Floating-Point Numbers"
+      "title": "Floating-Point Numbers",
+      "category": "theory"
     },
     {
       "id": "14.1",
-      "title": "Protocols"
+      "title": "Protocols",
+      "category": "theory"
     },
     {
       "id": "14.2",
-      "title": "Circuit & Packet Switching"
+      "title": "Circuit & Packet Switching",
+      "category": "theory"
     },
     {
       "id": "15.1",
-      "title": "Processors, Parallel Processing and VMs"
+      "title": "Processors, Parallel Processing and VMs",
+      "category": "theory"
     },
     {
       "id": "15.2",
-      "title": "Boolean Algebra and Logic Circuits"
+      "title": "Boolean Algebra and Logic Circuits",
+      "category": "theory"
     },
     {
       "id": "16.1",
-      "title": "Operating System"
+      "title": "Operating System",
+      "category": "theory"
     },
     {
       "id": "16.2",
-      "title": "Translation Software"
+      "title": "Translation Software",
+      "category": "theory"
     },
     {
       "id": "17.1",
-      "title": "Encryption and Digital Certificates"
+      "title": "Encryption and Digital Certificates",
+      "category": "theory"
     },
     {
       "id": "18.1",
-      "title": "Artificial Intelligence"
+      "title": "Artificial Intelligence",
+      "category": "theory"
     },
     {
       "id": "19.1",
-      "title": "Algorithms"
+      "title": "Algorithms",
+      "category": "theory"
     },
     {
       "id": "19.2",
-      "title": "Recursion"
+      "title": "Recursion",
+      "category": "theory"
     },
     {
       "id": "20.1",
-      "title": "Programming Paradigms"
+      "title": "Programming Paradigms",
+      "category": "theory"
     },
     {
       "id": "20.2",
-      "title": "File Processing and Exception Handling"
+      "title": "File Processing and Exception Handling",
+      "category": "theory"
+    },
+    {
+      "id": "P.1",
+      "title": "Variables, Constants, I/O and Datatypes"
+    },
+    {
+      "id": "P.2",
+      "title": "Selection"
+    },
+    {
+      "id": "P.3",
+      "title": "Repetition and Operators"
+    },
+    {
+      "id": "P.4",
+      "title": "Functions and String Manipulation"
     }
   ]
 }
