@@ -6,17 +6,20 @@
     "14.1",
     "15.1",
     "15.2",
+    "15.3",
+    "15.4",
+    "15.5",
     "P.1",
     "P.2",
     "P.3",
     "P.4",
-    "P.5"
+    "P.5",
+    "P.6"
   ],
   "lessonsInProgress": [
     "14.2",
-    "15.3",
-    "P.6",
-    "P.7"
+    "P.7",
+    "P.8"
   ],
   "syllabus": [
     {
@@ -36,12 +39,12 @@
     },
     {
       "id": "14.1",
-      "title": "Protocols",
+      "title": "Protocols & TCP/IP",
       "type": "Theory"
     },
     {
       "id": "14.2",
-      "title": "Circuit & Packet Switching",
+      "title": "Protocols, Circuit/Packet Switching & Routing",
       "type": "Theory"
     },
     {
@@ -57,6 +60,16 @@
     {
       "id": "15.3",
       "title": "Karnaugh Maps",
+      "type": "Theory"
+    },
+    {
+      "id": "15.4",
+      "title": "Sequential Logic - SR Flip Flops",
+      "type": "Theory"
+    },
+    {
+      "id": "15.5",
+      "title": "Sequential Logic - JK Flip Flops",
       "type": "Theory"
     },
     {
@@ -132,6 +145,11 @@
     {
       "id": "P.7",
       "title": "Data Structures",
+      "type": "Practical"
+    },
+    {
+      "id": "P.8",
+      "title": "Object Oriented Programming (OOP)",
       "type": "Practical"
     }
   ]
